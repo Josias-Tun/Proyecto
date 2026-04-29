@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seguimiento</title>
+</head>
+<body>
+    <h2>Seguimiento del Pedido</h2>
+
+    <p><strong>Cliente:</strong> {{ pedido.cliente }}</p>
+    <p><strong>Estado:</strong> {{ pedido.estado }}</p>
+
+    <h3>Historial</h3>
+    <ul>
+        {% for h in pedido.historial %}
+        <li>
+            {{ h.estado }} - {{ h.fecha }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <a href="/dashboard">Volver</a>
+</body>
+</html>
