@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin</title>
+</head>
+<body>
+    <h2>Panel de Administración</h2>
+
+    <ul>
+        {% for p in pedidos %}
+        <li>
+            {{ p.cliente }} - {{ p.estado }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <a href="/dashboard">Volver</a>
+</body>
+</html>
