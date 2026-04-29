@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2>Pedidos</h2>
+
+    <a href="/crear">Crear Pedido</a> |
+    <a href="/admin">Admin</a> |
+    <a href="/logout">Salir</a>
+
+    <ul>
+        {% for p in pedidos %}
+        <li>
+            {{ p.cliente }} - {{ p.estado }}
+            <a href="/seguimiento/{{ p._id }}">Ver</a>
+            <a href="/cancelar/{{ p._id }}">Cancelar</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
