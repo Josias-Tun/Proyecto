@@ -16,16 +16,24 @@ db = client["paqueteria"]
 # ---------------- LOGIN ----------------
 @app.route("/", methods=["GET", "POST"])
 def login():
+    error = None
+
     if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+
         user = db.usuarios.find_one({
-            "username": request.form["username"],
-            "password": request.form["password"]
+            "username": username,
+            "password": password
         })
+
         if user:
             session["user"] = user["username"]
             return redirect("/dashboard")
-    return render_template("login.html")
+        else:
+            error = "Usuario o contraseña incorrectos"
 
+    return render_template("login.html", error=error)
 # ---------------- DASHBOARD ----------------
 @app.route("/dashboard")
 def dashboard():
