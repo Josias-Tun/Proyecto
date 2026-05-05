@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, redirect, session
 from pymongo import MongoClient
 from bson.objectid import ObjectId
@@ -8,7 +9,7 @@ app = Flask(__name__)
 app.secret_key = "secret123"
 
 # URI (puedes moverla a variables de entorno luego)
-MONGO_URI = "mongodb+srv://josiastun024_db_user:%244APMJMAGPEJE@cluster4a.6iobxfj.mongodb.net/paqueteria?retryWrites=true&w=majority"
+MONGO_URI = "mongodb+srv://josiastun024_db_user:$4APMJMAGPEJE@proyecto.xdcjiis.mongodb.net/"
 
 client = MongoClient(MONGO_URI)
 db = client["paqueteria"]
