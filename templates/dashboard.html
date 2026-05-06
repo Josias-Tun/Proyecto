@@ -8,6 +8,7 @@
 
 <div class="container mt-4">
 
+    <h5 class="text-muted">Usuario: {{ session['user'] }}</h5>
     <h2 class="mb-4">📦 Gestión de Pedidos</h2>
 
     <a class="btn btn-success mb-3" href="/crear">+ Nuevo Pedido</a>
@@ -23,18 +24,35 @@
             </tr>
         </thead>
         <tbody>
-            {% for p in pedidos %}
-            <tr>
-                <td>{{ p.cliente }}</td>
-                <td>
-                    <span class="badge bg-info">{{ p.estado }}</span>
-                </td>
-                <td>
-                    <a class="btn btn-sm btn-primary" href="/seguimiento/{{ p._id }}">Ver</a>
-                    <a class="btn btn-sm btn-danger" href="/cancelar/{{ p._id }}">Cancelar</a>
-                </td>
-            </tr>
-            {% endfor %}
+
+            {% if pedidos %}
+                {% for p in pedidos %}
+                <tr>
+                    <td>{{ p.cliente }}</td>
+                    <td>
+                        <span class="badge 
+                        {% if p.estado == 'Creado' %}bg-primary
+                        {% elif p.estado == 'Cancelado' %}bg-danger
+                        {% else %}bg-success
+                        {% endif %}
+                        ">
+                            {{ p.estado }}
+                        </span>
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="/seguimiento/{{ p._id }}">Ver</a>
+                        <a class="btn btn-sm btn-danger" href="/cancelar/{{ p._id }}">Cancelar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center text-muted">
+                        No tienes pedidos aún
+                    </td>
+                </tr>
+            {% endif %}
+
         </tbody>
     </table>
 
